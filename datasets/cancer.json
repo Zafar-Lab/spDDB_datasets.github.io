@@ -1,0 +1,67 @@
+[
+  {
+    "title": "Breast Cancer ER+",
+    "image": "assets/images/cancer/breast_cancer_ER+.png",
+    "link": "https://figshare.com/your-link"
+  },
+  {
+    "title": "Breast Cancer TNBC",
+    "image": "assets/images/cancer/breast_cancer_tnbc.png",
+    "link": "https://figshare.com/your-link"
+  },
+  {
+    "title": "Kidney Cancer 410",
+    "image": "assets/images/cancer/kidney_cancer_410.png",
+    "link": "https://figshare.com/your-link"
+  },
+  {
+    "title": "Kidney Cancer 411",
+    "image": "assets/images/cancer/kidney_cancer_411.png",
+    "link": "https://figshare.com/your-link"
+  },
+  {
+    "title": "Kidney Cancer 506",
+    "image": "assets/images/cancer/kidney_cancer_506.png",
+    "link": "https://figshare.com/your-link"
+  },
+  {
+    "title": "Liver Cancer HCC-1L",
+    "image": "assets/images/cancer/liver_cancer_1.png",
+    "link": "https://figshare.com/your-link"
+  },
+  {
+    "title": "Liver Cancer HCC-2L",
+    "image": "assets/images/cancer/liver_cancer_2.png",
+    "link": "https://figshare.com/your-link"
+  },
+  {
+    "title": "Liver Cancer HCC-3L",
+    "image": "assets/images/cancer/liver_cancer_3.png",
+    "link": "https://figshare.com/your-link"
+  },
+  {
+    "title": "Liver Cancer HCC-4L",
+    "image": "assets/images/cancer/liver_cancer_4.png",
+    "link": "https://figshare.com/your-link"
+  },
+  {
+    "title": "Lung Cancer Visium HD",
+    "image": "assets/images/cancer/lung_cancer_visiumHD.png",
+    "link": "https://figshare.com/your-link"
+  },
+  {
+    "title": "MERFISH Breast Cancer",
+    "image": "assets/images/cancer/MERFISH_breast_cancer.png",
+    "link": "https://figshare.com/your-link"
+  },
+  {
+    "title": "MERFISH Lung Cancer",
+    "image": "assets/images/cancer/MERFISH_lung_cancer.png",
+    "link": "https://figshare.com/your-link"
+  },
+  {
+    "title": "Prostate Cancer",
+    "image": "assets/images/cancer/prostate_cancer.png",
+    "link": "https://figshare.com/your-link"
+  }
+]

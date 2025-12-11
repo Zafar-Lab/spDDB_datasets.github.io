@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Organ Datasets</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="brain.html">Brain</a>
+      <a href="cancer.html">Cancer</a>
+      <a href="organs.html">Organs</a>
+    </nav>
+    <h1>Organ Datasets</h1>
+  </header>
+  <main id="dataset-container"></main>
+  <script>
+    fetch("datasets/organs.json")
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById("dataset-container");
+        data.forEach(ds => {
+          const div = document.createElement("div");
+          div.className = "card";
+          div.innerHTML = `
+            <img src="${ds.image}" alt="${ds.title}">
+            <h2>${ds.title}</h2>
+            <a href="${ds.link}" target="_blank">Download</a>
+          `;
+          container.appendChild(div);
+        });
+      });
+  </script>
+</body>
+</html>

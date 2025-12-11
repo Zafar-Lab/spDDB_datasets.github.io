@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Research Data Portal</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body {
+      font-family: 'Merriweather', serif;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #fff;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #ddd;
+    }
+
+    nav {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #0056b3;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: #fdfdfd;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #555;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .sections {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      padding: 3rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #fff;
+      padding: 2rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      text-align: center;
+      transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .card:hover {
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+    }
+
+    .card h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .card p {
+      color: #555;
+      margin-bottom: 1rem;
+    }
+
+    .card a {
+      color: #fff;
+      background: #0056b3;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .card a:hover {
+      background: #003d80;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="brain.html">Brain</a>
+      <a href="cancer.html">Cancer</a>
+      <a href="organs.html">Organs</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Benchmarking Project Data Portal</h1>
+    <p>
+      This site hosts the datasets accompanying our paper.  
+      Explore embeddings and download the raw data directly from Figshare.
+    </p>
+  </section>
+
+  <section class="sections">
+    <div class="card">
+      <h2>🧠 Brain Datasets</h2>
+      <p>Embedding visualizations and datasets for brain datasets.</p>
+      <a href="brain.html">Explore</a>
+    </div>
+
+    <div class="card">
+      <h2>🧬 Cancer Datasets</h2>
+      <p>Embedding visualizations and datasets for cancer datasets.</p>
+      <a href="cancer.html">Explore</a>
+    </div>
+
+    <div class="card">
+      <h2>🫀 Organ Datasets</h2>
+      <p>Embedding visualizations and datasets for organ datasets.</p>
+      <a href="organs.html">Explore</a>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Your Name · Built with GitHub Pages
+  </footer>
+
+</body>
+</html>

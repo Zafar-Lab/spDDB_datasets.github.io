@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Brain Datasets</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="brain.html" class="active">Brain</a>
+      <a href="cancer.html">Cancer</a>
+      <a href="organs.html">Organs</a>
+    </nav>
+    <h1>Brain Datasets</h1>
+  </header>
+
+  <main id="dataset-container">
+    <p id="loading">Loading datasets...</p>
+  </main>
+
+  <script>
+    const container = document.getElementById("dataset-container");
+    const loadingText = document.getElementById("loading");
+
+    fetch("datasets/brain.json")
+      .then(res => {
+        if (!res.ok) throw new Error("Failed to load brain.json");
+        return res.json();
+      })
+      .then(data => {
+        loadingText.remove(); // remove loading message
+        data.forEach(ds => {
+          const div = document.createElement("div");
+          div.className = "card";
+          div.innerHTML = `
+            <img src="${ds.image}" alt="${ds.title}">
+            <h2>${ds.title}</h2>
+            <a href="${ds.link}" target="_blank" class="download-btn">Download</a>
+          `;
+          container.appendChild(div);
+        });
+      })
+      .catch(err => {
+        loadingText.textContent = "⚠️ Could not load datasets.";
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
