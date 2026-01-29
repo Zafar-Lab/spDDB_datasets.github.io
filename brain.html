@@ -37,7 +37,10 @@
           div.innerHTML = `
             <img src="${ds.image}" alt="${ds.title}">
             <h2>${ds.title}</h2>
-            <a href="${ds.link}" target="_blank" class="download-btn">Download</a>
+            <div class="actions">
+              <a href="${ds.link}" target="_blank" class="download-btn">Download</a>
+              <a href="detail.html?dataset=${encodeURIComponent(ds.title)}&type=brain" class="eval-btn">Evaluation</a>
+            </div>
           `;
           container.appendChild(div);
         });

@@ -11,26 +11,43 @@
       <a href="index.html">Home</a>
       <a href="brain.html">Brain</a>
       <a href="cancer.html">Cancer</a>
-      <a href="organs.html">Organs</a>
+      <a href="organs.html" class="active">Organs</a>
     </nav>
     <h1>Organ Datasets</h1>
   </header>
-  <main id="dataset-container"></main>
+
+  <main id="dataset-container">
+    <p id="loading">Loading datasets...</p>
+  </main>
+
   <script>
+    const container = document.getElementById("dataset-container");
+    const loadingText = document.getElementById("loading");
+
     fetch("datasets/organs.json")
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error("Failed to load organs.json");
+        return res.json();
+      })
       .then(data => {
-        const container = document.getElementById("dataset-container");
+        loadingText.remove();
         data.forEach(ds => {
           const div = document.createElement("div");
           div.className = "card";
           div.innerHTML = `
             <img src="${ds.image}" alt="${ds.title}">
             <h2>${ds.title}</h2>
-            <a href="${ds.link}" target="_blank">Download</a>
+            <div class="actions">
+              <a href="${ds.link}" target="_blank" class="download-btn">Download</a>
+              <a href="detail.html?dataset=${encodeURIComponent(ds.title)}&type=organs" class="eval-btn">Evaluation</a>
+            </div>
           `;
           container.appendChild(div);
         });
+      })
+      .catch(err => {
+        loadingText.textContent = "⚠️ Could not load datasets.";
+        console.error(err);
       });
   </script>
 </body>

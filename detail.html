@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dataset Evaluation</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="brain.html">Brain</a>
+      <a href="cancer.html">Cancer</a>
+      <a href="organs.html">Organs</a>
+    </nav>
+    <h1>Dataset Evaluation</h1>
+  </header>
+
+  <main id="detail-container">
+    <p id="loading">Loading dataset...</p>
+  </main>
+
+  <script>
+    const container = document.getElementById("detail-container");
+    const loadingText = document.getElementById("loading");
+
+    // Get dataset title from URL parameter
+    const params = new URLSearchParams(window.location.search);
+    const datasetTitle = params.get('dataset');
+
+    if (!datasetTitle) {
+      loadingText.textContent = "❌ No dataset specified.";
+    } else {
+      // Determine which JSON file to load based on current page
+      const pageType = params.get('type') || 'brain';
+      fetch(`datasets/${pageType}.json`)
+        .then(res => {
+          if (!res.ok) throw new Error(`Failed to load ${pageType}.json`);
+          return res.json();
+        })
+        .then(data => {
+          // Find the dataset matching the title
+          const dataset = data.find(d => d.title === decodeURIComponent(datasetTitle));
+          if (!dataset) {
+            loadingText.textContent = "❌ Dataset not found.";
+            return;
+          }
+
+          loadingText.remove();
+
+          // Create side-by-side comparison container
+          const comparison = document.createElement('div');
+          comparison.className = 'comparison';
+
+          // Original image (use normal non-funky heatmap) with legend below
+          const origDiv = document.createElement('div');
+          origDiv.className = 'comparison-item';
+          const heatmapSrc = dataset.image.replace(/(\.[a-zA-Z0-9]+)$/, '_heatmap$1');
+          const heatmapLegendSrc = 'assets/images/heatmap_legend.png';
+          origDiv.innerHTML = `
+            <h2>Heatmap</h2>
+            <div class="heatmap-with-legend">
+              <img src="${heatmapSrc}" alt="${dataset.title} - Heatmap" class="main-heatmap">
+              <img src="${heatmapLegendSrc}" alt="Heatmap legend" class="heatmap-legend">
+            </div>
+          `;
+
+          // Funky heatmap
+          const funkySrc = dataset.image.replace(/(\.[a-zA-Z0-9]+)$/, '_funky$1');
+          console.log('Heatmap image:', heatmapSrc);
+          console.log('Funky Heatmap image:', funkySrc);
+          const heatDiv = document.createElement('div');
+          heatDiv.className = 'comparison-item';
+          heatDiv.innerHTML = `
+            <h2>Funky Heatmap</h2>
+            <img src="${funkySrc}" alt="${dataset.title} - Heatmap" class="heatmap-img" onerror="console.error('Failed to load heatmap:', this.src)">
+          `;
+
+
+          comparison.appendChild(origDiv);
+          comparison.appendChild(heatDiv);
+
+          // Add title and metadata
+          const title = document.createElement('h1');
+          title.textContent = dataset.title;
+          container.appendChild(title);
+          container.appendChild(comparison);
+
+          // Add back button
+          const backBtn = document.createElement('a');
+          backBtn.href = pageType + '.html';
+          backBtn.className = 'back-btn';
+          backBtn.textContent = '← Back';
+          container.appendChild(backBtn);
+        })
+        .catch(err => {
+          loadingText.textContent = "⚠️ Could not load dataset.";
+          console.error(err);
+        });
+    }
+  </script>
+</body>
+</html>

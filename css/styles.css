@@ -76,3 +76,106 @@ header h1 {
 .card a:hover {
   background: #003d80;
 }
+
+/* Actions row inside each card */
+.card .actions {
+  margin-top: 0.75rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* Evaluation button style */
+.card a.eval-btn {
+  background: #ff7f50;
+  padding: 0.5rem 1rem;
+}
+.card a.eval-btn:hover {
+  background: #e0562f;
+}
+
+/* Detail page - side-by-side comparison */
+.comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+.comparison-item {
+  text-align: center;
+}
+
+.comparison-item h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.comparison-item img {
+  width: 100%;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Heatmap with legend layout */
+.heatmap-with-legend {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}
+
+/* Main heatmap */
+.heatmap-with-legend img.main-heatmap {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Legend — tightly constrained */
+.heatmap-with-legend img.heatmap-legend {
+  max-height: 80px;   /* 🔥 equalizes column heights */
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+
+.comparison-item img.heatmap-img {
+  border: 1px solid #ddd;
+}
+
+#detail-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+#detail-container h1 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.back-btn {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.75rem 1.5rem;
+  background: #0056b3;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.back-btn:hover {
+  background: #003d80;
+}
