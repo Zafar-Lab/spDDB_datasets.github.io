@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Domain Datasets</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .tabs { display:flex; gap:0.5rem; padding:1rem 2rem; }
+    .tabs button { padding:0.5rem 0.75rem; border-radius:6px; border:1px solid #ddd; background:#fff; cursor:pointer; }
+    .tabs button.active { background:#0056b3; color:#fff; border-color:#004080; }
+    .back { margin:1rem 2rem; display:inline-block; color:#0056b3; text-decoration:none; font-weight:600; }
+    main { padding:1rem 2rem; }
+    /* match card grid used by brain/cancer pages */
+    #real-container, #sim-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .hidden { display:none; }
+    /* ensure hiding wins over the ID selector grid rule */
+    #real-container.hidden, #sim-container.hidden { display: none; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="brain.html">Brain</a>
+      <a href="cancer.html">Cancer</a>
+      <a href="organs.html">Organs</a>
+      <a href="domain.html" class="active">Domain</a>
+    </nav>
+    <h1>Domain Datasets</h1>
+  </header>
+
+  <div class="tabs" role="tablist">
+    <button id="tab-real" class="active" role="tab" aria-controls="real-container">Real</button>
+    <button id="tab-sim" role="tab" aria-controls="sim-container">Simulated</button>
+  </div>
+
+  <main>
+    <section id="real-container">
+      <p id="loading-real">Loading real datasets...</p>
+    </section>
+
+    <section id="sim-container" class="hidden">
+      <p id="loading-sim">Loading simulated datasets...</p>
+    </section>
+  </main>
+
+  <script>
+    function createCard(ds, type) {
+      const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `
+          <img src="${ds.image}" alt="${ds.title}">
+          <h2>${ds.title}</h2>
+          <div class="actions">
+            <a href="${ds.link}" target="_blank" class="download-btn">Download</a>
+          </div>
+        `;
+      return div;
+    }
+
+    function loadDatasets(url, containerId, loadingId, typeLabel) {
+      const container = document.getElementById(containerId);
+      const loading = document.getElementById(loadingId);
+      fetch(url)
+        .then(res => {
+          if (!res.ok) throw new Error('Failed to load ' + url);
+          return res.json();
+        })
+        .then(data => {
+          if (loading) loading.remove();
+          if (!data || data.length === 0) {
+            const p = document.createElement('p');
+            p.textContent = 'No datasets found.';
+            container.appendChild(p);
+            return;
+          }
+          data.forEach(ds => container.appendChild(createCard(ds, typeLabel)));
+        })
+        .catch(err => {
+          if (loading) loading.textContent = '⚠️ Could not load datasets.';
+          console.error(err);
+        });
+    }
+
+    // Initial loads
+    loadDatasets('datasets/domain_real.json', 'real-container', 'loading-real', 'domain_real');
+    loadDatasets('datasets/domain_simulated.json', 'sim-container', 'loading-sim', 'domain_simulated');
+
+    // Tab switching
+    const tabReal = document.getElementById('tab-real');
+    const tabSim = document.getElementById('tab-sim');
+    const realContainer = document.getElementById('real-container');
+    const simContainer = document.getElementById('sim-container');
+
+    tabReal.addEventListener('click', () => {
+      tabReal.classList.add('active');
+      tabSim.classList.remove('active');
+      realContainer.classList.remove('hidden');
+      simContainer.classList.add('hidden');
+    });
+
+    tabSim.addEventListener('click', () => {
+      tabSim.classList.add('active');
+      tabReal.classList.remove('active');
+      simContainer.classList.remove('hidden');
+      realContainer.classList.add('hidden');
+    });
+  </script>
+</body>
+</html>

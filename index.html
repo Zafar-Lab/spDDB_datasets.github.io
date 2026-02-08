@@ -62,6 +62,14 @@
       margin: 0 auto;
     }
 
+    /* center lone items (like the Domain card) when they wrap to a new row */
+    .sections {
+      justify-content: center;
+      justify-items: center;
+    }
+    /* place Domain card under the second column (beneath Cancer) */
+    .sections .domain-card { grid-column: 2; }
+
     .card {
       background: #fff;
       padding: 2rem;
@@ -114,6 +122,7 @@
       <a href="brain.html">Brain</a>
       <a href="cancer.html">Cancer</a>
       <a href="organs.html">Organs</a>
+      <a href="domain.html">Domain</a>
     </nav>
   </header>
 
@@ -142,6 +151,12 @@
       <h2>🫀 Organ Datasets</h2>
       <p>Embedding visualizations and datasets for organ datasets.</p>
       <a href="organs.html">Explore</a>
+    </div>
+
+    <div class="card domain-card">
+      <h2>🌐 Domain Detection Datasets</h2>
+      <p>Ground truth domain visualizations for datasets used in domain detection benchmarking.</p>
+      <a href="domain.html">Explore</a>
     </div>
   </section>
 

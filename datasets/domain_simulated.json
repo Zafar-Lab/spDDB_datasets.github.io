@@ -1,0 +1,77 @@
+[
+  {
+    "title": "Human Breast ST8",
+    "image": "assets/images/domain/simulated/breast_atlas_8_domain.png",
+    "link": "https://figshare.com/your-link"
+  },
+  {
+    "title": "Breast Cancer ER+",
+    "image": "assets/images/domain/simulated/breast_cancer_ER+_domain.png",
+    "link": "https://figshare.com/your-link"
+  },
+  {
+    "title": "Breast Cancer TNBC",
+    "image": "assets/images/domain/simulated/breast_cancer_tnbc_domain.png",
+    "link": "https://figshare.com/your-link"
+  },
+  {
+    "title": "Cerebellum",
+    "image": "assets/images/domain/simulated/Cerebellum_domain.png",
+    "link": "https://figshare.com/your-link"
+  },
+  {
+    "title": "Chicken Heart",
+    "image": "assets/images/domain/simulated/chicken_heart_domain.png",
+    "link": "https://figshare.com/your-link"
+  },
+  {
+    "title": "Intestine A1",
+    "image": "assets/images/domain/simulated/intestine_1_domain.png",
+    "link": "https://figshare.com/your-link"
+  },
+  {
+    "title": "Intestine A2",
+    "image": "assets/images/domain/simulated/intestine_2_domain.png",
+    "link": "https://figshare.com/your-link"
+  },
+  {
+    "title": "Kidney Cancer 410",
+    "image": "assets/images/domain/simulated/kidney_cancer_410_domain.png",
+    "link": "https://figshare.com/your-link"
+  },
+  {
+    "title": "Kidney Cancer 411",
+    "image": "assets/images/domain/simulated/kidney_cancer_411_domain.png",
+    "link": "https://figshare.com/your-link"
+  },
+  {
+    "title": "Kidney Cancer 506",
+    "image": "assets/images/domain/simulated/kidney_cancer_506_domain.png",
+    "link": "https://figshare.com/your-link"
+  },
+  {
+    "title": "Liver Cancer HCC-1L",
+    "image": "assets/images/domain/simulated/liver_cancer_1_domain.png",
+    "link": "https://figshare.com/your-link"
+  },
+  {
+    "title": "Liver Cancer HCC-2L",
+    "image": "assets/images/domain/simulated/liver_cancer_2.png",
+    "link": "https://figshare.com/your-link"
+  },
+  {
+    "title": "Liver Cancer HCC-3L",
+    "image": "assets/images/domain/simulated/liver_cancer_3.png",
+    "link": "https://figshare.com/your-link"
+  },
+  {
+    "title": "Liver Cancer HCC-4L",
+    "image": "assets/images/domain/simulated/liver_cancer_4.png",
+    "link": "https://figshare.com/your-link"
+  },
+  {
+    "title": "Prostate Cancer",
+    "image": "assets/images/domain/simulated/prostate_cancer_domain.png",
+    "link": "https://figshare.com/your-link"
+  }
+]
