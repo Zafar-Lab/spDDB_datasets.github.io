@@ -36,7 +36,9 @@
           const div = document.createElement("div");
           div.className = "card";
           div.innerHTML = `
-            <img src="${ds.image}" alt="${ds.title}">
+            <div class="img-crop">
+              <img src="${ds.image}" alt="${ds.title}" loading="lazy">
+            </div>
             <h2>${ds.title}</h2>
             <div class="actions">
               <a href="${ds.link}" target="_blank" class="download-btn">Download</a>
