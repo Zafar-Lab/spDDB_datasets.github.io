@@ -106,6 +106,8 @@
       background: #003d80;
     }
 
+    
+
     footer {
       text-align: center;
       padding: 2rem;
@@ -114,6 +116,29 @@
     }
   </style>
 </head>
+
+<script>
+function copyBibtex() {
+  const bibtex = `@article{Shree2026.05.11.724248,
+  author = {Shree, Ajita and Aditya, V and Kumar, Tanush and Zafar, Hamim},
+  title = {A Comprehensive Benchmarking of Spatial Deconvolution and Domain Detection Methods across Diverse Tissues and Spatial Transcriptomic Technologies},
+  journal = {bioRxiv},
+  year = {2026},
+  doi = {10.64898/2026.05.11.724248}
+}`;
+
+  navigator.clipboard.writeText(bibtex).then(() => {
+    const msg = document.getElementById("copy-msg");
+
+    msg.classList.add("show");
+
+    setTimeout(() => {
+      msg.classList.remove("show");
+    }, 2000);
+  });
+}
+</script>
+
 <body>
 
   <header>
@@ -135,6 +160,41 @@
       More figures and analyses are available <a href="https://drive.google.com/drive/folders/1UFVdn0FVJxBsYD-oY-t59kryNBYxRJHb?usp=sharing">here</a> !
     </p>
   </section>
+<div class="notice-box">
+
+  <div class="notice-section">
+    <div class="notice-title">
+      License: <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">
+        CC BY-NC-ND 4.0
+      </a>
+    </div>
+
+    <div class="notice-text">
+      This work is licensed under the Creative Commons
+      Attribution–NonCommercial–NoDerivatives 4.0 International License.
+    </div>
+  </div>
+
+  <div class="notice-section">
+    <div class="notice-title">
+      Citation Required
+    </div>
+
+    <div class="notice-text">
+      If you use any datasets, benchmark results, visualizations,
+      or resources from spDDB, please cite the associated publication.
+    </div>
+
+    <a href="#" class="notice-link" onclick="copyBibtex(); return false;">
+      Copy Citation →
+    </a>
+
+    <p id="copy-msg" class="copy-msg">
+      Citation copied to clipboard.
+    </p>
+  </div>
+
+</div>
 
   <section class="sections">
     <div class="card">
@@ -163,7 +223,7 @@
   </section>
 
   <footer>
-    © 2025 Your Name · Built with GitHub Pages
+    © 2026 Zafar-Lab · Built with GitHub Pages
   </footer>
 
 </body>

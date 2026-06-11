@@ -12,6 +12,7 @@
       <a href="brain.html">Brain</a>
       <a href="cancer.html">Cancer</a>
       <a href="organs.html">Organs</a>
+      <a href="domain.html">Domain</a>
     </nav>
     <h1>Dataset Evaluation</h1>
   </header>
@@ -48,68 +49,92 @@
 
         loadingText.remove();
 
-        // ===== RAW HEATMAP =====
-        const origDiv = document.createElement('div');
-        origDiv.className = 'comparison-item';
-        const heatmapSrc = dataset.image.replace(/(\.[a-zA-Z0-9]+)$/, '_heatmap$1');
-        const heatmapLegendSrc = 'assets/images/heatmap_legend.png';
-        origDiv.innerHTML = `
-          <h2>Heatmap</h2>
-          <div class="heatmap-with-legend">
-            <img src="${heatmapSrc}" alt="${dataset.title} - Heatmap" class="main-heatmap">
-          </div>
-        `;
+        // If this is a domain type, show only the evaluation image
+        if (pageType && pageType.startsWith('domain')) {
+          const title = document.createElement('h1');
+          title.textContent = dataset.title;
+          container.appendChild(title);
 
-        // ===== FUNKY HEATMAP =====
-        const funkySrc = dataset.image.replace(/(\.[a-zA-Z0-9]+)$/, '_funky$1');
-        console.log('Heatmap image:', heatmapSrc);
-        console.log('Funky Heatmap image:', funkySrc);
+          const evalDiv = document.createElement('div');
+          evalDiv.className = 'comparison-item';
+          const evalSrc = dataset.image.replace(/(\.[a-zA-Z0-9]+)$/, '_eval$1');
+          evalDiv.innerHTML = `
+            <h2>Evaluation</h2>
+            <div class="heatmap-with-legend">
+              <img src="${evalSrc}" alt="${dataset.title} - Evaluation" class="main-heatmap">
+            </div>
+          `;
+          container.appendChild(evalDiv);
 
-        const heatDiv = document.createElement('div');
-        heatDiv.className = 'comparison-item';
-        heatDiv.innerHTML = `
-          <h2>Funky Heatmap</h2>
-          <img src="${funkySrc}" 
-               alt="${dataset.title} - Heatmap" 
-               class="heatmap-img"
-               onerror="console.error('Failed to load heatmap:', this.src)">
-        `;
+          const backBtn = document.createElement('a');
+          backBtn.href = 'domain.html';
+          backBtn.className = 'back-btn';
+          backBtn.textContent = '← Back';
+          container.appendChild(backBtn);
+        } else {
+          // ===== RAW HEATMAP =====
+          const origDiv = document.createElement('div');
+          origDiv.className = 'comparison-item';
+          const heatmapSrc = dataset.image.replace(/(\.[a-zA-Z0-9]+)$/, '_heatmap$1');
+          const heatmapLegendSrc = 'assets/images/heatmap_legend.png';
+          origDiv.innerHTML = `
+            <h2>Heatmap</h2>
+            <div class="heatmap-with-legend">
+              <img src="${heatmapSrc}" alt="${dataset.title} - Heatmap" class="main-heatmap">
+            </div>
+          `;
 
-        // ===== BIVARIATE PLOT =====
-        const bivariateSrc = dataset.image.replace(/(\.[a-zA-Z0-9]+)$/, '_bivariate$1');
-        const bivarDiv = document.createElement('div');
-        bivarDiv.className = 'comparison-item';
-        bivarDiv.innerHTML = `
-          <h2>Bivariate Plot</h2>
-          <div class="heatmap-with-legend">
-            <img src="${bivariateSrc}"
-                 alt="${dataset.title} - Bivariate"
-                 class="main-heatmap bivariate-img"
-                 onerror="console.warn('No bivariate image for:', this.src)">
-            <img src="${heatmapLegendSrc}" alt="Legend" class="heatmap-legend">
-          </div>
-        `;
+          // ===== FUNKY HEATMAP =====
+          const funkySrc = dataset.image.replace(/(\.[a-zA-Z0-9]+)$/, '_funky$1');
+          console.log('Heatmap image:', heatmapSrc);
+          console.log('Funky Heatmap image:', funkySrc);
 
-        // Add title and metadata
-        const title = document.createElement('h1');
-        title.textContent = dataset.title;
-        container.appendChild(title);
+          const heatDiv = document.createElement('div');
+          heatDiv.className = 'comparison-item';
+          heatDiv.innerHTML = `
+            <h2>Funky Heatmap</h2>
+            <img src="${funkySrc}" 
+                 alt="${dataset.title} - Heatmap" 
+                 class="heatmap-img"
+                 onerror="console.error('Failed to load heatmap:', this.src)">
+          `;
 
-        // STACKED layout (funky first, then a row with raw heatmap + bivariate)
-        container.appendChild(heatDiv);
+          // ===== BIVARIATE PLOT =====
+          const bivariateSrc = dataset.image.replace(/(\.[a-zA-Z0-9]+)$/, '_bivariate$1');
+          const bivarDiv = document.createElement('div');
+          bivarDiv.className = 'comparison-item';
+          bivarDiv.innerHTML = `
+            <h2>Bivariate Plot</h2>
+            <div class="heatmap-with-legend">
+              <img src="${bivariateSrc}"
+                   alt="${dataset.title} - Bivariate"
+                   class="main-heatmap bivariate-img"
+                   onerror="console.warn('No bivariate image for:', this.src)">
+              <img src="${heatmapLegendSrc}" alt="Legend" class="heatmap-legend">
+            </div>
+          `;
 
-        const row = document.createElement('div');
-        row.className = 'comparison';
-        row.appendChild(origDiv);
-        row.appendChild(bivarDiv);
-        container.appendChild(row);
+          // Add title and metadata
+          const title = document.createElement('h1');
+          title.textContent = dataset.title;
+          container.appendChild(title);
 
-        // Add back button
-        const backBtn = document.createElement('a');
-        backBtn.href = pageType + '.html';
-        backBtn.className = 'back-btn';
-        backBtn.textContent = '← Back';
-        container.appendChild(backBtn);
+          // STACKED layout (funky first, then a row with raw heatmap + bivariate)
+          container.appendChild(heatDiv);
+
+          const row = document.createElement('div');
+          row.className = 'comparison';
+          row.appendChild(origDiv);
+          row.appendChild(bivarDiv);
+          container.appendChild(row);
+
+          // Add back button
+          const backBtn = document.createElement('a');
+          backBtn.href = pageType + '.html';
+          backBtn.className = 'back-btn';
+          backBtn.textContent = '← Back';
+          container.appendChild(backBtn);
+        }
       })
       .catch(err => {
         loadingText.textContent = "⚠️ Could not load dataset.";
